@@ -1,14 +1,21 @@
 trigger VehicleTrigger on Vehicle__c (after delete) {
-    // Set<Id> setCaseId = new Set <Id>();
-    // for(Vehicle__c c:Trigger.old){ 
-    //     setCaseId.add(setCaseId);   
-    // }
-
     List <Case> caselist = new List <Case>();
-    for(Vehicle__c caseveh:Trigger.old)
-    if(caseveh.Vehicle__c ==null){
-        caselist.add(case);
+
+    for(Vehicle__c casevehObj:Trigger.old){
+
+    Case caseObj = new Case (
+        // Vehicle_Case__c = casevehObj.Id,
+        subject = 'We need to remove this vehicle  ' +  casevehObj.Name,
+        status = 'new',
+        priority = 'Medium');
+
+    caselist.add(caseObj);
+
+    if (caselist.size() > 0) { insert caselist;
 
     }
 
-}
+    } }
+        
+    // if(Vehicle__c ==null){
+    //     caselist.add(case);}}
