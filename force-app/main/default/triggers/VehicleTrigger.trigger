@@ -5,7 +5,7 @@ trigger VehicleTrigger on Vehicle__c (after delete) {
 
     Case caseObj = new Case (
         // Vehicle_Case__c = casevehObj.Id,
-        subject = 'We need to remove this vehicle  ' +  casevehObj.Name,
+        subject = 'Check if ' +  casevehObj.Name + '  was successfully removed  ' ,
         status = 'new',
         priority = 'Medium');
 
