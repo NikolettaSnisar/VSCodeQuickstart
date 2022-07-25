@@ -3,47 +3,40 @@ public with sharing class TriggerVehicleOfferTest {
     @isTest
 
         static void testBeforeInsert(){
-            Vehicle_offer__c voffObject = new Vehicle_offer__c (
-            Name = 'Test Offer',
-            Is_physically__c = true);
+            Vehicle__c vehObj = new Vehicle__c (
+                name = 'AA234'
+            );
+            insert vehObj;
 
-            insert voffObject;
+            Vehicle_offer__c offer1 = new Vehicle_offer__c(
+                name = 'Offer 1',
+                Is_physically__c = true
+            );
+            offer1.Vehicle__c = vehObj.Id;
+            insert offer1;
 
-            Vehicle__c vehObj1 = new Vehicle__c();
-            vehObj1.Name = 'SS34';
-            vehObj1.model__c = 'FFFF';
-            insert vehObj1;
+            Vehicle_offer__c offer2 = new Vehicle_offer__c(
+                name = 'Offer 2',
+                Is_physically__c = true
+            );
+            offer2.Vehicle__c = vehObj.Id;
+            // is it right to put Id here, because in anither way I`m getting misteakes? 
+            insert offer2;
 
-            Showroom__c showObj1 = new Showroom__c();
-            showObj1.Name = 'Gdansk';
-            insert showObj1;
+            // List<Vehicle_offer__c> offerlist = new List<Vehicle_offer__c>();
 
+            Try {
 
-            Vehicle__c vehObj2 = new Vehicle__c();
-            vehObj2.Name = 'SS34';
-            vehObj2.model__c = 'FFFF';
-            insert vehObj2;
+             insert offer2;
+            //  I`m not sure that it should be insert offer2?
 
-            Showroom__c showObj2 = new Showroom__c();
-            showObj2.Name = 'Gdansk';
-            insert showObj2;
+            }
 
+            Catch (Exception offer) {
+            List <Vehicle_offer__c> offerlist =[SELECT Id FROM Vehicle_offer__c];
+            System.assertEquals(offerlist.size(), 2 );
 
-            List <Vehicle_offer__c> vofflist = new List <Vehicle_offer__c>();
-
-            // for (Vehicle_offer__c physicaloffer : physicaloffers){
-                if(voffObject.Vehicle__c == voffObject.Vehicle__c 
-            && voffObject.Is_physically__c==true){
-                voffObject.addError('We hit a problem Madame');
-              
-                }else{
-                    vofflist.add(voffObject);
-                    }
-
-
-        }
-
-}           
-
-
-
+            }
+            // I lost my thoughts a little bit in all of that
+        }}
+          
