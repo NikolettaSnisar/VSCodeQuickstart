@@ -1,6 +1,6 @@
 trigger VehicleTrigger on Vehicle__c (after delete) {
 
-    List <Telemetry__c> telList = new List <Telemetry__c>();
+    // List <Telemetry__c> telList = new List <Telemetry__c>();
     // Set <Id> telemetryIds = new Set<Id>();
     
     // for(Vehicle__c vehObj:Trigger.old){
@@ -21,7 +21,7 @@ trigger VehicleTrigger on Vehicle__c (after delete) {
 
         if (caselist.size() > 0)
         { insert caselist;
-        delete telList;
+        // delete telList;
 
     }
 }    

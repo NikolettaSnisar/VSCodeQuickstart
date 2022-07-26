@@ -1,12 +1,12 @@
 trigger VehicleOfferTrigger on Vehicle_offer__c (before update, before insert) {
 
     Set<Id> vehicleIds = new Set<Id>();
-    Set<Id> showroomIds = new Set<Id>();
 
     for(Vehicle_offer__c offer : Trigger.new){
         vehicleIds.add(offer.Vehicle__c);
-        showroomIds.add(offer.Showroom__c);
+
     }
+
     List <Vehicle_offer__c> physicaloffers =[
         SELECT Vehicle__c, Showroom__c
         FROM Vehicle_offer__c
@@ -15,16 +15,20 @@ trigger VehicleOfferTrigger on Vehicle_offer__c (before update, before insert) {
 
     ];
 
+    System.debug(physicaloffers);
+    System.debug(Trigger.new);
+
+
+
     List <Vehicle_offer__c> vofflist = new List <Vehicle_offer__c>();
     for (Vehicle_offer__c offer:Trigger.new){
         for (Vehicle_offer__c physicaloffer : physicaloffers){
          if(physicaloffer.Vehicle__c == offer.Vehicle__c && offer.Is_physically__c==true){
             offer.addError('We hit a problem Madame');
-          
-            }else{
-                vofflist.add(offer);
             }
+
       }
+
     }
 
 }
