@@ -39,15 +39,12 @@ public with sharing class TriggerVehicleOfferTest {
             offer2.Showroom__c = showObj.Id;
 
 
-            // is it right to put Id here, because in anither way I`m getting misteakes? 
-           
 
-            // List<Vehicle_offer__c> offerlist = new List<Vehicle_offer__c>();
 
             Try {
 
              insert offer2;
-            //  I`m not sure that it should be insert offer2?
+         
 
             }
 
@@ -56,6 +53,6 @@ public with sharing class TriggerVehicleOfferTest {
             System.assertEquals(offerlist.size(), 1 );
 
             }
-            // I lost my thoughts a little bit in all of that
+ 
         }}
           
