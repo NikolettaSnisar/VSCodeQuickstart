@@ -1,5 +1,12 @@
 trigger VehicleOfferTrigger on Vehicle_offer__c (before update, before insert) {
 
+    // if(when class used be used (Trigger.isAfter && Trigger.isInsert)){
+//          invoke => 
+//      OfferEmail offemail = new OfferEmail();
+        // offemail.sendEmail(Trigger.new)
+    // }
+
+    
     Set<Id> vehicleIds = new Set<Id>();
 
     for(Vehicle_offer__c offer : Trigger.new){
