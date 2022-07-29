@@ -8,7 +8,7 @@ public with sharing class OfferEmailSending {
     List <Vehicle_offer__c> vehofflist = new List <Vehicle_offer__c>();
 
     List<Vehicle_offer__c> vhofferlist= [
-        SELECT Name, Vehicle__c, Showroom__c
+        SELECT Name, Vehicle_offer__c.Vehicle__c, Vehicle_offer__c.Showroom__c
         FROM Vehicle_offer__c];
 
     sendTo.add('nikabane26@gmail.com ');
