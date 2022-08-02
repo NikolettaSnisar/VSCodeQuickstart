@@ -5,9 +5,7 @@ public with sharing class OfferEmailSending {
 
     List<String> sendTo = new List<String>();
 
-    List <Vehicle_offer__c> vehofflist = new List <Vehicle_offer__c>();
-
-    List<Vehicle_offer__c> vhofferlist= [
+    List<Vehicle_offer__c> vehofflist= [
         SELECT Name, Vehicle_offer__c.Vehicle__c, Vehicle_offer__c.Showroom__c
         FROM Vehicle_offer__c];
 
