@@ -1,4 +1,4 @@
-trigger ShowroomCaseTrigger on Showroom__c(after update) {
+Trigger ShowroomCaseTrigger on Showroom__c(after update) {
 
     List<Showroom__c> closedShowrooms = new List<Showroom__c>();
 
@@ -8,7 +8,7 @@ trigger ShowroomCaseTrigger on Showroom__c(after update) {
         }
     }   
 
-    InsertCaseQueueable caseQueueable = new InsertCaseQueable();
+    InsertCaseQueueable caseQueueable = new InsertCaseQueueable();
 
     caseQueueable.setShowrooms(closedShowrooms);
     ID jobID = System.enqueueJob(closedShowrooms);

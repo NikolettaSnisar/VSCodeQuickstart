@@ -9,7 +9,7 @@ public class InsertCaseQueueable implements Queueable {
     public void execute(QueueableContext context) {
 
         if(this.showrooms != null){
-            List<Cases> cases = new List<Case>();
+            List<Case> cases = new List<Case>();
 
             for(Showroom__c showroom : showrooms){
                 Case caseObj = new Case (
@@ -22,7 +22,7 @@ public class InsertCaseQueueable implements Queueable {
             
             insert cases;
 
-            // ID jobID = System.enqueueJob(SECOND CLASS THAT MAKES THE CALLBACK);
+            ID jobID = System.enqueueJob(Cases);
 
         }
 
