@@ -10,16 +10,19 @@ public with sharing class OfferEmailSending {
         FROM Vehicle_offer__c];
 
     sendTo.add('nikabane26@gmail.com ');
-    for(SObject vhoffer : Trigger.new){
-        Messaging.SingleEmailMessage mail =  new Messaging.SingleEmailMessage();
-        mail.setToAddresses(sendTo);
-        mail.setSubject('New Offer was created');
-        String body = 'Check a new offer Name:  '+ Vehicle_offer__c.Name +' Vehicle Name: '
-        + Vehicle_offer__c.Vehicle__c + ' Showroom: ' + Vehicle_offer__c.Showroom__c;
-        mail.setHtmlBody(body);
-        mails.add(mail);
+    Messaging.SingleEmailMessage mail =  new Messaging.SingleEmailMessage();
+    mail.setToAddresses(sendTo);
+    mail.setSubject('New Offer was created');
+    for(Vehicle_offer__c vhoffer : triggerNewList){
+    String body = 'Check a new offer Name:  '+ vhoffer.Name +' Vehicle Name: '
+    + vhoffer.Vehicle__c + ' Showroom: ' + vhoffer.Showroom__c + '<br>';
+    mail.setHtmlBody(body);
+    mails.add(mail);
+
+    Messaging.sendEmail(mails);
       }
-       Messaging.sendEmail(mails);
-    }}
+     
+    }
+}
 
 

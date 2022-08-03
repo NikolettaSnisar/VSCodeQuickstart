@@ -14,7 +14,7 @@ trigger ShowroomCaseTrigger on Showroom__c(after update) {
         priority = 'Medium');
 
         // FeedItem feed = new FeedItem();
-        // feed.ParentId = 'showrooms Id';
+        // feed.ParentId = 'Showroom__cId';
         // feed.Body = 'Time to renovate' + shObj.Name  ;
         // insert feed;
  

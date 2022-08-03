@@ -11,11 +11,9 @@ public with sharing class TelemetryCleaningBatchTest {
         TelemetryCleaningBatch BC = new TelemetryCleaningBatch ();
         Database.executeBatch(BC);
         Test.stopTest();
-        // Telemetry__c telem = [SELECT Id FROM Telemetry__c WHERE CreatedDate != LAST_N_DAYS:90];
-        // System.assertEquals(0,[SELECT COUNT() FROM Telemetry__c WHERE CreatedDate != LAST_N_DAYS:90], 
-        // 'Telemetry should be deleted');
 
-        List<Telemetry__c> deletedList = [SELECT Id FROM  Telemetry__c WHERE CreatedDate != LAST_N_DAYS:0];
+        List<Telemetry__c> deletedList = [SELECT Id FROM  Telemetry__c 
+        WHERE CreatedDate != LAST_N_DAYS:90];
         System.assertEquals(0, deletedList.size(), 'All records were deleted');
     }
 }
